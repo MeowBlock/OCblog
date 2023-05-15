@@ -1,13 +1,11 @@
 <?php
 require 'vendor/autoload.php';
 
-
 $router = new \App\Router\Router($_GET['url']);
-
+$getController = new \Controller\getController();
+$router->get('/', function(){echo 'index';});
 $router->get('/posts', function(){echo 'Tous les articles';});
-$router->get('/posts/:id', function($id){echo 'Afficher l\'article '.$id;
-require('view/form_post.php');
-});
+$router->get('/posts/:id', $getController->getArticle);
 
 
 
