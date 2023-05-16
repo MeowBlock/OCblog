@@ -6,13 +6,46 @@ class Article
 
     public $id;
     public $positions;
+    public $title;
 
     function __construct($id) {
         $this->id = $id;
 
         //avant la BDD
         $this->positions = 4;
+        $this->title = 'Mon premier article';
         echo 'id is : '.$id;
+    }
+
+    public function getGrid() {
+        //avant la BDD
+        $arr['1'] = 50;
+        $arr['2'] = 50;
+        $arr['3'] = 50;
+        $arr['4'] = 50;
+        $max = 0;
+        $msg = '';
+        $toreturn = [];
+        foreach($arr as $key => $el) {
+            $max += $el;
+            if($max > 100) {
+                throw new \Exception("article width does not match");
+            } else {
+                for($i = 0; $i < $el/10; $i++) {
+                    $msg .= 'n'.$key.' ';
+                }
+
+            }
+            if($max == 100) {
+                $max = 0;
+                $toreturn[] = $msg;
+                $msg = '';
+            }
+
+        }
+        var_dump($toreturn);
+        die;
+        
     }
 
 
@@ -56,6 +89,14 @@ class Article
         $this->positions = $positions;
 
         return $this;
+    }
+
+    /**
+     * Get the value of title
+     */ 
+    public function getTitle()
+    {
+        return $this->title;
     }
 }
 

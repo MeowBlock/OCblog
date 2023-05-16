@@ -1,9 +1,10 @@
+<div class='main-title'><?= $article->getTitle() ?></div>
 <div class='grid-container'>
 <?php 
 for($i = 1; $i <= $article->getPositions(); $i++) {
     ?>
     <div class='grid-element grid-element<?=$i?>'>
-    hey <?= $article->getElement($i) ?>
+    <?= $article->getElement($i) ?>
 
     </div>
     
@@ -11,9 +12,16 @@ for($i = 1; $i <= $article->getPositions(); $i++) {
     
     <?php
 }
+$article->getGrid();
 ?>
 </div>
 <style>
+    .main-title {
+        width: 100%;
+        text-align: center;
+        font-size: 30px;
+        font-weight: 700;
+    }
     .grid-container {
         width: calc(100vw - 200px);
         margin: auto;
@@ -22,13 +30,14 @@ for($i = 1; $i <= $article->getPositions(); $i++) {
         'n3 n3 n3 n3 n3 n4 n4 n4 n4 n4';
     }
     .grid-element {
-
+        padding: 30px;
+        min-height: 400px;
     }
     .article-image {
         height: 100%;
         width: 100%;
-        background-size: cover;
-        background-position: center;
+        background-size: cover!important;
+        background-position: center!important;
     }
     <?php 
     for($i = 1; $i <= $article->getPositions(); $i++) {
