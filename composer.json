@@ -10,7 +10,8 @@
         "psr-4": {
             "App\\": "control",
             "Controller\\": "control/Controller",
-            "Model\\": "control/model"
+            "Model\\": "control/model",
+            "Orm\\": "control/orm"
         }
     },
     "require": {}

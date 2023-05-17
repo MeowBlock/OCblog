@@ -12,7 +12,6 @@ for($i = 1; $i <= $article->getPositions(); $i++) {
     
     <?php
 }
-$article->getGrid();
 ?>
 </div>
 <style>
@@ -26,8 +25,9 @@ $article->getGrid();
         width: calc(100vw - 200px);
         margin: auto;
         display: grid;
-        grid-template-areas: 'n1 n1 n1 n1 n1 n2 n2 n2 n2 n2'
-        'n3 n3 n3 n3 n3 n4 n4 n4 n4 n4';
+        grid-template-areas: <?php foreach($article->getGrid() as $el) {
+            echo "'".$el."'";
+        } ?>
     }
     .grid-element {
         padding: 30px;

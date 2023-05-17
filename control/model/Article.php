@@ -43,8 +43,7 @@ class Article
             }
 
         }
-        var_dump($toreturn);
-        die;
+        return $toreturn;
         
     }
 
