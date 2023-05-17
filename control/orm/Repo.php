@@ -1,15 +1,9 @@
 <?php 
 
 namespace Orm;
-class orm
+class repo
 {
-    public function getArticle($id = 0) {
-        $article = new \Model\Article($id);
-        if($id == 0 || !$id) {
-            require('./view/liste_article.php');
-        }
-        require('./view/article.php');
-    }
+    public $article;
 }
 
 
