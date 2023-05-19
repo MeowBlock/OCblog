@@ -46,5 +46,19 @@ for($i = 1; $i <= $article->getPositions(); $i++) {
         }';
     }
     ?>
+    @media only screen and (max-width: 1000px) {
+        .grid-container {
+            display: flex;
+            flex-direction: column;
+            width: calc(100vw - 60px);
+        }
+        .article-image {
+            width: calc(100vw - 120px);
+            min-height: 100vw;
+        }
+        .grid-element {
+        min-height: 300px;
+        }
+    }
 
 </style>

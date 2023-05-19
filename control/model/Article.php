@@ -1,22 +1,12 @@
 <?php 
 
 namespace Model;
-class Article
+class Article extends \Orm\Article
 {
-
-    public $id;
-    public $positions;
-    public $title;
-
     function __construct($id) {
-        $this->id = $id;
-
-        //avant la BDD
-        $this->positions = 4;
-        $this->title = 'Mon premier article';
+        Parent::__construct($id);
         echo 'id is : '.$id;
     }
-
     public function getGrid() {
         //avant la BDD
         $arr['1'] = 50;
