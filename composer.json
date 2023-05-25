@@ -14,5 +14,7 @@
             "Orm\\": "control/orm"
         }
     },
-    "require": {}
+    "require": {
+        "twig/twig": "^3.6"
+    }
 }
