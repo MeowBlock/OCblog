@@ -1,13 +1,19 @@
 <?php
+use App\Controller\getController;
+
+
+
+
 require 'vendor/autoload.php';
 
 $router = new \App\Router\Router($_GET['url']);
-$getController = new \Controller\getController();
+$getController = new getController();
+
 $getArticleFunc = array($getController,"getArticle");
+
 $router->get('/', function(){echo 'index';});
 $router->get('/posts', $getArticleFunc);
 $router->get('/posts/:id', $getArticleFunc);
-
 
 
 

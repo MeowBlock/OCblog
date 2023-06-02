@@ -1,6 +1,6 @@
 <?php 
 
-namespace Controller;
+namespace App\Controller;
 class getController
 {
     public function getArticle($id = 0) {
