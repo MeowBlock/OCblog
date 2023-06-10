@@ -14,11 +14,10 @@ abstract class Article
     
 
     function __construct($id) {
-        require_once("_connect_db.php");
-        $this->db = $db;
-        $prep_getArticle = $this->db->prepare("SELECT * from articles WHERE `id` = ?");
-        $prep_getArticle->execute([$id]);
-        $getArticle = $prep_getArticle->fetch();
+        
+        $this->db = Db::getConnection();
+        $prep_getArticle = Query::table('articles')->select(['*'])->where('id', '=', $id)->get();
+        $getArticle = $prep_getArticle[0];
         $this->id = $getArticle['id'];
         $this->title = $getArticle['title'];
 
