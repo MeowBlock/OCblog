@@ -110,5 +110,29 @@ public function get(){
     // On retourne les résultats
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+public function setLimit($limit): void
+    {
+        $this->limit = $limit;
+    }
+
+    /**
+     * Permet de renvoyer les résultats après le x match
+     *
+     * @param null $offset
+     */
+    public function setOffset($offset): void
+    {
+        $this->offset = $offset;
+    }
+
+    /**
+     * Permet de trier les résultats
+     *
+     * @param array $sort
+     */
+    public function setSort(array $sort): void
+    {
+        $this->sort = $sort;
+    }
 }
 ?>

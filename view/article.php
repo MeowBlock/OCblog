@@ -1,18 +1,10 @@
-<div class='main-title'><?= $article->getTitle() ?></div>
+<div class='main-title'><?= $article->title ?></div>
 <div class='grid-container'>
-<?php 
-for($i = 1; $i <= $article->getPositions(); $i++) {
-    ?>
-    <div class='grid-element grid-element<?=$i?>'>
-    <?= $article->getElement($i) ?>
+    <div class='grid-element grid-element'>
+    <?= $article->content ?>
 
     </div>
     
-    
-    
-    <?php
-}
-?>
 </div>
 <style>
     .main-title {
@@ -25,9 +17,11 @@ for($i = 1; $i <= $article->getPositions(); $i++) {
         width: calc(100vw - 200px);
         margin: auto;
         display: grid;
-        grid-template-areas: <?php foreach($article->getGrid() as $el) {
-            echo "'".$el."'";
-        } ?>
+        /*grid-template-areas:*/ <?php
+         //foreach($article->getGrid() as $el) {
+            //echo "'".$el."'";
+        //} 
+        ?>
     }
     .grid-element {
         padding: 30px;
@@ -40,11 +34,11 @@ for($i = 1; $i <= $article->getPositions(); $i++) {
         background-position: center!important;
     }
     <?php 
-    for($i = 1; $i <= $article->getPositions(); $i++) {
-        echo '.grid-element'.$i.' {
-           grid-area: n'.$i.'; 
-        }';
-    }
+    // for($i = 1; $i <= $article->getPositions(); $i++) {
+    //     echo '.grid-element'.$i.' {
+    //        grid-area: n'.$i.'; 
+    //     }';
+    // }
     ?>
     @media only screen and (max-width: 1000px) {
         .grid-container {

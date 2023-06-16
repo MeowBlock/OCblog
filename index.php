@@ -1,5 +1,5 @@
 <?php
-use App\Controller\getController;
+use App\Controller\ArticleController;
 
 
 
@@ -7,7 +7,7 @@ use App\Controller\getController;
 require 'vendor/autoload.php';
 
 $router = new \App\Router\Router($_GET['url']);
-$getController = new getController();
+$getController = new ArticleController();
 
 $getArticleFunc = array($getController,"getArticle");
 
