@@ -1,0 +1,10 @@
+
+<div>Heya</div>
+{% for article in articles %}
+    <div class='main-title'>{{ article.title|raw }}</div>
+    <div class='grid-container'>
+        <div class='grid-element grid-element'>
+        {{ article.content|raw }}
+        </div>
+    </div>
+{% endfor %}

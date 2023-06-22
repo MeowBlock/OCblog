@@ -1,5 +1,6 @@
 <?php
 use App\Controller\ArticleController;
+use App\Controller\BlogController;
 
 
 
@@ -7,11 +8,12 @@ use App\Controller\ArticleController;
 require 'vendor/autoload.php';
 
 $router = new \App\Router\Router($_GET['url']);
-$getController = new ArticleController();
+$ArticleController = new ArticleController();
 
-$getArticleFunc = array($getController,"getArticle");
+$getArticleFunc = array($ArticleController,"getArticle");
 
-$router->get('/', function(){echo 'index';});
+
+$router->get('/', [new BlogController, 'getBlog']);
 $router->get('/posts', $getArticleFunc);
 $router->get('/posts/:id', $getArticleFunc);
 

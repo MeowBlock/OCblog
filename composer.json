@@ -11,7 +11,8 @@
             "App\\": "control",
             "Controller\\": "control/Controller",
             "Model\\": "control/model",
-            "Orm\\": "control/orm"
+            "Orm\\": "control/orm",
+            "twig\\": "control/twig"
         }
     },
     "require": {
