@@ -2,14 +2,11 @@
 
 namespace App\Controller;
 
-use twig;
-
-class BlogController
+class BlogController extends Controller
 {
-    public static function getBlog() {
-        $twig = new twig\Twig();
+    public function getBlog() {
     $articles = \Model\Article::find(null, [], false);
-    echo $twig->twig->render('liste_articles.html.twig', ['articles' => $articles]);
+    echo $this->twig->render('liste_articles.html.twig', ['articles' => $articles]);
     }
 }
 

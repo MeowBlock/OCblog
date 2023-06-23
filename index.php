@@ -1,9 +1,7 @@
 <?php
 use App\Controller\ArticleController;
 use App\Controller\BlogController;
-
-
-
+use App\Controller\HpageController;
 
 require 'vendor/autoload.php';
 
@@ -13,8 +11,8 @@ $ArticleController = new ArticleController();
 $getArticleFunc = array($ArticleController,"getArticle");
 
 
-$router->get('/', [new BlogController, 'getBlog']);
-$router->get('/posts', $getArticleFunc);
+$router->get('/',[new HpageController, 'getHpage'] );
+$router->get('/posts', [new BlogController, 'getBlog']);
 $router->get('/posts/:id', $getArticleFunc);
 
 
