@@ -2,6 +2,7 @@
 use App\Controller\ArticleController;
 use App\Controller\BlogController;
 use App\Controller\HpageController;
+use App\Controller\LoginController;
 
 require 'vendor/autoload.php';
 
@@ -14,6 +15,8 @@ $getArticleFunc = array($ArticleController,"getArticle");
 $router->get('/',[new HpageController, 'getHpage'] );
 $router->get('/posts', [new BlogController, 'getBlog']);
 $router->get('/posts/:id', $getArticleFunc);
+$router->get('/login', [new LoginController, 'getLogin']);
+$router->post('/login', [new LoginController, 'postLoginPage']);
 
 
 
