@@ -20,12 +20,14 @@ class LoginController extends Controller
     }
     public function postLogin() {
         $user = new \Model\User;
-        $blabla = $user->find([['login', '=', $_POST['email']],['password', '=', $_POST['password']]], [], false);
-        if($blabla == []) {
+        $blabla = $user->first(['email', '=', $_POST['email']], [], false);
+        if($blabla == [] || !password_verify($_POST['password'], $blabla['password'])) {
             $this->getLogin(['Email ou mot de passe incorrect']);
         } else {
-            var_dump('login');
-            var_dump($blabla);
+            $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $user->email = $_POST['email'];
+            $user->login();
+            header('location: ./index.php');
         }
     }
     public function postRegister() {
@@ -38,11 +40,18 @@ class LoginController extends Controller
             $error[] = 'l\'adresse mail est invalide';
         }
         //VERIFIER EMAIL EXISTE
-        $blabla = $user->find([['login', '=', $_POST['email']]], [], false);
-
+        $blabla = $user->find([['email', '=', $_POST['email']]], [], false);
+        if($blabla != []) {
+            $error[] = 'l\'identifiant est déjà utilisé';  
+        }
         if($error == []) {
             //register user
             $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $user->email = $_POST['email'];
+            $user->name = $_POST['nom'];
+            $user->insert();
+            $user->login();
+            header('location: ./index.php');
         } else {
             $this->getLogin($error);
         }

@@ -5,8 +5,8 @@ use App\Controller\HpageController;
 use App\Controller\LoginController;
 
 require 'vendor/autoload.php';
-
-$router = new \App\Router\Router($_GET['url']);
+$url = isset($_GET['url']) ? $_GET['url'] : '/';
+$router = new \App\Router\Router($url);
 $ArticleController = new ArticleController();
 
 $getArticleFunc = array($ArticleController,"getArticle");

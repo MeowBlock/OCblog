@@ -40,7 +40,6 @@ abstract class Model
         if (method_exists(static::class, $name)) {
             return $this->$name();
         }
-
         // Si ce n'est pas un attribut on soulève une erreur
         if (!array_key_exists($name, $this->attr)) {
             throw new Exception("L'attribut $name n'existe pas");
@@ -141,7 +140,7 @@ abstract class Model
     {
         // On execute le find
         $query = self::find($criteria, $colomns, $hydrate);
-
+ 
         // Si y'a un résultat on renvoi le premier
         if ($query != null) {
             return $query[0];
@@ -167,4 +166,17 @@ abstract class Model
 
         return $result;
     }
+
+    public function insert()
+    {
+        // Si la table n'est pas renseignée on soulève une erreur
+        if (static::$table == null) {
+            throw new Exception("Le nom de la table doit être renseigné");
+        }
+
+        $query = Query::table(static::$table);
+
+        $this->attr[static::$primaryKey] = $query->insert($this->attr);
+    }
+
 }

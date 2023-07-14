@@ -1,0 +1,12 @@
+.header {
+position: fixed;
+top: 0;
+display: flex;
+flex-direction: row;
+justify-content: flex-end;
+width: 100%;
+background-color: white;
+column-gap: 20px;
+z-index: 999999999;
+min-height: 10px;
+}

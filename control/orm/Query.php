@@ -134,5 +134,39 @@ public function setLimit($limit): void
     {
         $this->sort = $sort;
     }
+    public function insert(array $args = []){
+        // On récup la connexion
+        $pdo = Db::getConnection();
+
+        // On construit la query
+        $this->sql = "INSERT INTO `".$this->table."` (";
+
+        // Pour chaque argument on récup la clé
+        foreach ($args as $key => $val){
+            $this->sql .= "`".$key."`,";
+        }
+        $this->sql = substr($this->sql, 0, -1);
+
+        // On concat la chaine
+        $this->sql .= ") VALUES (";
+
+        // On récup les arguments
+        foreach ($args as $arg){
+            $this->sql .= "?,";
+        }
+        $this->sql = substr($this->sql, 0, -1);
+
+        // On concat la chaine
+        $this->sql .= ");";
+
+        // On prépare la requête
+        $stmt = $pdo->prepare($this->sql);
+
+        // On execute
+        $stmt->execute(array_values($args));
+
+        // On renvoi l'id créer
+        return $pdo->lastInsertId();
+    }
 }
 ?>

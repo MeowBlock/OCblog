@@ -1,22 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>OCBlog - Homepage</title>
-    <!-- Bulma Version 0.9.4-->
-    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.4/css/bulma.min.css" />
-    <link rel="stylesheet" type="text/css" href="public/css/showcase.css" />
-    <script
-      src="https://kit.fontawesome.com/2828f7885a.js"
-      integrity="sha384-WAsFbnLEQcpCk8lM1UTWesAf5rGTCvb2Y+8LvyjAAcxK1c3s5c0L+SYOgxvc6PWG"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="icon" type="image/png" href="favicon.png" />
-  </head>
+{% extends "base.html.twig" %}
 
-  <body>
+   {% block head %}
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <title>OCBlog - Homepage</title>
+   <!-- Bulma Version 0.9.4-->
+   <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.4/css/bulma.min.css" />
+   <link rel="stylesheet" type="text/css" href="public/css/showcase.css" />
+   <script
+     src="https://kit.fontawesome.com/2828f7885a.js"
+     integrity="sha384-WAsFbnLEQcpCk8lM1UTWesAf5rGTCvb2Y+8LvyjAAcxK1c3s5c0L+SYOgxvc6PWG"
+     crossorigin="anonymous"
+   ></script>
+   <link rel="icon" type="image/png" href="favicon.png" />
+   {% endblock %}
+
+  {# <body> #}
+{% block content %}
     <!-- Begin Preloader -->
     <div class="preloader-wrapper">
       <div class="preloader">
@@ -441,8 +442,9 @@
       <!-- End Contact Content -->
     </div>
     <!-- End Main Content -->
+    {% endblock %}
 
-    <!-- Scripts -->
+    {% block script %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="public/js/showcase.js"></script>
     <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
@@ -453,5 +455,4 @@
         duration: 800,
       });
     </script>
-  </body>
-</html>
+  {% endblock %}
