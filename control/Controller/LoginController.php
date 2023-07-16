@@ -1,6 +1,7 @@
 <?php 
 
 namespace App\Controller;
+use App\Controller\AuthentificationManager;
 
 class LoginController extends Controller
 {
@@ -26,8 +27,9 @@ class LoginController extends Controller
         } else {
             $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $user->email = $_POST['email'];
-            $user->login();
-            header('location: ./index.php');
+            $auth = new AuthentificationManager;
+            $auth->login($user);
+            header('location: ./mon-compte');
         }
     }
     public function postRegister() {
@@ -50,8 +52,9 @@ class LoginController extends Controller
             $user->email = $_POST['email'];
             $user->name = $_POST['nom'];
             $user->insert();
-            $user->login();
-            header('location: ./index.php');
+            $auth = new AuthentificationManager;
+            $auth->login($user);
+            header('location: ./mon-compte');
         } else {
             $this->getLogin($error);
         }
