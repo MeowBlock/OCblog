@@ -83,3 +83,19 @@ nav.navbar {
   max-height: 250px;
   overflow-y: scroll;
 }
+
+.mt_1rem {
+  margin-top: 1rem!important;
+}
+.mt_3rem {
+  margin-top: 3rem!important;
+}
+.mt_5rem {
+  margin-top: 5rem!important;
+}
+.button.accept, .button.accept:hover, .accept_color {
+  background-color:  rgb(31, 150, 248)!important;
+}
+.button.refuse, .button.refuse:hover, .refuse_color  {
+  background-color: rgb(247, 56, 56)!important;
+}

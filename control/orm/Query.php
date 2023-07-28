@@ -168,5 +168,36 @@ public function setLimit($limit): void
         // On renvoi l'id créer
         return $pdo->lastInsertId();
     }
+        /**
+     * Permet d'update une ligne en base
+     *
+     * @param array $args
+     * @return string
+     *
+     * @throws \Exception
+     */
+    public function update(array $args = [], $timestampUpdate = true){
+        // On construit la requête
+        $this->sql = "UPDATE " . $this->table . " SET ";
+
+        // On récup la connexion
+        $pdo = Db::getConnection();
+
+        // On parcours les arguments & on les concat
+        foreach ($args as $key => $val){
+            $this->sql .= "`".$key."` = ?,";
+        }
+
+        $this->sql = substr($this->sql,0,-1);
+
+        // On ajoute le where & on prepare la requête
+        $this->sql .= ''.$this->where;
+        $stmt = $pdo->prepare($this->sql);
+
+        // On execute en récupérent les args pour l'update et ceux pour le where
+        $stmt->execute(array_merge(array_values($args), array_values($this->args)));
+
+        return $this->sql;
+    }
 }
 ?>

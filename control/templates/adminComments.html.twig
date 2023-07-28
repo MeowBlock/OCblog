@@ -1,0 +1,58 @@
+{% extends "base.html.twig" %}
+
+
+{% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OCblog - Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <!-- Bulma Version 0.9.0-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.4/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="public/css/admin.css">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="columns">
+            {% include "partials/adminSidebar.html.twig" %}
+            <!--page-->
+            <div id="articles" class="tab column is-9 mt_5rem">
+                <div class="card-table">
+                    <div class="content">
+                        <table class="table is-fullwidth is-striped">
+                            <tbody>
+                                {% if comments %}
+                                    {% for comment in comments %}
+                                    <tr class="{{comment.statut == 1 ? 'accept_color' : (comment.statut == -1 ? 'refuse_color' : '')}}" id="id{{comment.id}}">
+                                        <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                        <td>{{users[comment.userID]}}</td>
+                                        <td>{{comment.text}}</td>
+                                        <td class="level-right" style="column-gap: 10px;">
+                                            <a class="button is-small is-primary view" data-comment="{{comment.id}}" data-article="{{comment.articleId}}">Voir</a>
+                                            <a class="button is-small is-primary accept" data-comment="{{comment.id}}" data-article="{{comment.articleId}}">Accepter</a>
+                                            <a class="button is-small is-primary refuse" data-comment="{{comment.id}}" data-article="{{comment.articleId}}">Refuser</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                Aucun commentaire
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% if all == false %}
+                <footer class="card-footer">
+                    <a href="./mon-compte/tous-les-commentaires" class="card-footer-item">Voir tout</a>
+                </footer>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script async type="text/javascript" src="public/js/admin.js"></script>
+{% endblock %}

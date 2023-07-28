@@ -27,8 +27,7 @@ class LoginController extends Controller
         } else {
             $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $user->email = $_POST['email'];
-            $auth = new AuthentificationManager;
-            $auth->login($user);
+            $this->auth->login($user);
             header('location: ./mon-compte');
         }
     }
@@ -52,8 +51,7 @@ class LoginController extends Controller
             $user->email = $_POST['email'];
             $user->name = $_POST['nom'];
             $user->insert();
-            $auth = new AuthentificationManager;
-            $auth->login($user);
+            $this->auth->login($user);
             header('location: ./mon-compte');
         } else {
             $this->getLogin($error);

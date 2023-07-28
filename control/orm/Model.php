@@ -179,4 +179,20 @@ abstract class Model
         $this->attr[static::$primaryKey] = $query->insert($this->attr);
     }
 
+    public function update($timestampUpdate = false)
+    {
+        if (static::$table == null) {
+            throw new Exception("Le nom de la table doit être renseigné");
+        }
+
+        if ($this->attr[static::$primaryKey] == null) {
+            throw new Exception("La clé primaire ne doit pas être vide pour modifié une ligne");
+        }
+
+        $query = Query::table(static::$table);
+        $query->where(static::$primaryKey, "=", $this->attr[static::$primaryKey]);
+
+        $query->update($this->attr, $timestampUpdate);
+    }
+
 }
