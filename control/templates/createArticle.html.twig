@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+
+{% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OCblog - Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <!-- Bulma Version 0.9.0-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.4/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="public/css/admin.css">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="columns">
+            {% include "partials/adminSidebar.html.twig" %}
+            <!--page-->
+            <div id="articles" class="tab column is-9 mt_5rem">
+                <div class="card-table">
+                    <div class="content">
+                        <form class="tinyForm" method="POST" enctype='multipart/form-data'>
+                            <input type="hidden" name="nom_form" value="creation_article" />
+                            <div class="tinyFormContainer">
+                                <label for="title">Titre</label>
+                                <input type="text" name="title" value="{{article.title}}" />
+                            </div>
+                            <div class="tinyFormContainer">
+                                <label for="description">Description</label>
+                                <textarea name="description">{{article.description}}</textarea>
+                            </div>
+                            <div class="tinyFormContainer">
+                                <label for="image">Visuel principal</label>
+                                <input name="image" type="file"/>
+                            </div>
+                            <textarea name="content" id="tiny">
+                                {{article.content}}
+                            </textarea>
+                              <button> Envoyer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script src="https://cdn.tiny.cloud/1/gfat1opn4uchyc3u7b0ta7kq4i12vllu0bwat7nfxhnluiu3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script async type="text/javascript" src="public/js/tiny.js"></script>
+
+<script async type="text/javascript" src="public/js/admin.js"></script>
+
+{% endblock %}

@@ -179,6 +179,14 @@ abstract class Model
         $this->attr[static::$primaryKey] = $query->insert($this->attr);
     }
 
+    public function save() {
+        if(isset($this->attr[static::$primaryKey])) {
+            $this->update();
+        } else {
+            $this->insert();
+        }
+    }
+
     public function update($timestampUpdate = false)
     {
         if (static::$table == null) {

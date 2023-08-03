@@ -19,7 +19,9 @@
             {% block head %}
             {% endblock %}
 
-            {% block stylesheets %}{% endblock %}
+            {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="public/css/global.css">
+            {% endblock %}
 
             <title>{% block title %}{% endblock %}</title>
     </head>
@@ -38,20 +40,6 @@
 
         {% block script %}
         {% endblock %}
-{# 
-        <script>
-            {% if notify is defined %}
-                {% for type, message in notify %}
-                       notify('{{ type }}', '{{ message }}');
-                {% endfor %}
-            {% endif %}
-
-            function notify(type, message){
-                const notifHtml = `<div class="notification is-${type} column mt-5" style="position: absolute;max-width: 20%;right: 10px;">${message}</div>`;
-
-                $(notifHtml).hide().prependTo("#content").show("drop").delay(5000).fadeOut("slow");
-            }
-        </script> #}
 
     </body>
 </html>

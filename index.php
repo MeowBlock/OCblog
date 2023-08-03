@@ -30,6 +30,10 @@ $router->get('/mon-compte',[new AccountController, 'getAccountHpage'] );
 $router->get('/mon-compte/articles',[new AccountController, 'GetAccountArticles'] );
 $router->get('/mon-compte/commentaires',[new AccountController, 'GetAccountComments'] );
 $router->get('/mon-compte/tous-les-commentaires',[new AccountController, 'GetAllComments'] );
+$router->get('/mon-compte/creation-article', [new AccountController, 'getAccountCreateArticle']);
+$router->get('/mon-compte/creation-article/:id', [new AccountController, 'getAccountCreateArticle']);
+$router->post('/mon-compte/creation-article/:id', [new AccountController, 'postAccountCreateArticle']);
+$router->post('/mon-compte/creation-article', [new AccountController, 'postAccountCreateArticle']);
 $router->post('/api/comment',[new ApiController, 'AcceptComment'] );
 
 $router->post('/posts/:id', function($id){echo 'Poster pour l\'article '.$id. ' '. var_dump($_POST);});

@@ -30,6 +30,59 @@ class AccountController extends Controller
             header('location: ./login');
         }
     }
+    public function getAccountCreateArticle($id = 0) {
+        if($this->auth->verifyConnect() && $this->auth->verifyAdmin()) {
+            if($id != 0) {
+                $article =  Article::first([['id', '=', $id],['user_id', '=', $_SESSION['user']['id']]], [], false);
+            } else {
+                $article = new Article;
+            }
+            echo $this->twig->render('createArticle.html.twig', ['article' => $article, 'activeCreation'=>'is-active']);
+
+        } else {
+            header('location: ./login');
+        }
+    }
+
+    public function gestionImage($file) {
+        $target_dir = "public/images/uploads/";
+        $target_file = $target_dir . basename($file["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+        // Check if image file is a actual image or fake image
+        $check = getimagesize($file["tmp_name"]);
+        if($check !== false) {
+            move_uploaded_file($file['tmp_name'], $target_file);
+          $uploadOk = 1;
+        } else {
+          $uploadOk = 0;
+        }
+        if($uploadOk){
+            return $target_file;
+        }
+        return false;
+    }
+    public function postAccountCreateArticle($id = 0) {
+        if($this->auth->verifyConnect() && $this->auth->verifyAdmin() && isset($_POST['nom_form']) && $_POST['nom_form'] == 'creation_article') {
+            if($id != 0) {
+                $article =  Article::first([['id', '=', $id],['user_id', '=', $_SESSION['user']['id']]]);
+            } else {
+                $article = new Article;
+            }
+            $article->title = $_POST['title'];
+            $article->description = $_POST['description'];
+            $article->content = $_POST['content'];
+            $article->user_id = $_SESSION['user']['id'];
+            if(isset($_FILES['image'])) {
+                $img = $this->gestionImage($_FILES['image']);
+            }
+            $article->image = $img;
+            $article->save();
+            header('location: ./mon-compte');
+        } else {
+            header('location: ./login');
+        }
+    }
     public function getAccountComments($comments = '') {
         $all = true;
         if($this->auth->verifyConnect() && $this->auth->verifyAdmin()) {

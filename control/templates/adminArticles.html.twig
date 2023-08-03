@@ -27,7 +27,10 @@
                                     <tr>
                                         <td width="5%"><i class="fa fa-bell-o"></i></td>
                                         <td>{{article.title}}</td>
-                                        <td class="level-right"><a class="button is-small view is-primary" data-article="{{article.id}}" >Voir</a></td>
+                                        <td class="level-right" style="column-gap: 10px;">
+                                            <a href="./mon-compte/creation-article/{{article.id}}"><button class="button is-small edit is-primary">Editer</button></a>
+                                            <button class="button is-small view is-primary" data-article="{{article.id}}" >Voir</button>
+                                        </td>
                                     </tr>
                                     {% endfor %}
                             </tbody>

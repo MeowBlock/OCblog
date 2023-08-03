@@ -99,3 +99,6 @@ nav.navbar {
 .button.refuse, .button.refuse:hover, .refuse_color  {
   background-color: rgb(247, 56, 56)!important;
 }
+.button.edit, .button.edit:hover, .edit_color  {
+  background-color: rgb(160, 53, 248)!important;
+}

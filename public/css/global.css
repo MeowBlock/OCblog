@@ -10,3 +10,24 @@ column-gap: 20px;
 z-index: 999999999;
 min-height: 10px;
 }
+.tinyFormContainer {
+    display: flex;
+    flex-direction: column;
+}
+.tinyForm {
+    row-gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.btn_submit {
+    height: fit-content;
+    padding: 10px;
+    width: fit-content;
+    background: transparent;
+    border: 1px solid blue;
+    align-self: end;
+}
+.liste_article_image {
+    max-height: 400px;
+    max-width: 50vw;
+}
