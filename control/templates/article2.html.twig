@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+
+{% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OCblog - {{article.title}}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <!-- Bulma Version 0.9.0-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.4/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="public/css/global.css">
+{% endblock %}
+
+{% block content %}
+    <div style="margin-top:50px; min-height:93vh;" class="container">
+        <h1 class="article_title">{{article.title}}</h1>
+        <div class="article_content">{{article.content|raw}}</div>
+    </div>
+    <div class="comments">
+        <h2 class="comment_title">Commentaires</h2>
+        <div class="comment_form {{islogin ? '' : 'hidden'}}">
+            <form method="POST" action="./postComment">
+                <input type="hidden" name="article" value="{{article.id}}">
+                <input type="hidden" name="comment" value="0">
+                <input type="text" name="text" placeholder="Entrez votre commentaire ici">
+                <button>Envoyer</button>
+            </form>
+        </div>
+        <div class="comment_login {{islogin ? 'hidden' : ''}}">
+            <div>Vous devez être connecté pour pouvoir poster un commentaire, Connectez-vous ici => <a href="./login">Se connecter</a></div>
+        </div>
+        <div class="comment_supercontainer">
+            {% for comment in comments %}
+                <div class="comment_container">
+                    <div class="comment_name">
+                        {{comment.uname}}
+                    </div>
+                    <div class="comment_separator"></div>
+                    <div>
+                        {{comment.text}}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script async type="text/javascript" src="public/js/admin.js"></script>
+{% endblock %}

@@ -35,6 +35,7 @@ $router->get('/mon-compte/creation-article/:id', [new AccountController, 'getAcc
 $router->post('/mon-compte/creation-article/:id', [new AccountController, 'postAccountCreateArticle']);
 $router->post('/mon-compte/creation-article', [new AccountController, 'postAccountCreateArticle']);
 $router->post('/api/comment',[new ApiController, 'AcceptComment'] );
+$router->post('/postComment',[new ArticleController, 'postComment'] );
 
 $router->post('/posts/:id', function($id){echo 'Poster pour l\'article '.$id. ' '. var_dump($_POST);});
 $router->run();

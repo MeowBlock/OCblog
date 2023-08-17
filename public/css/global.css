@@ -31,3 +31,31 @@ min-height: 10px;
     max-height: 400px;
     max-width: 50vw;
 }
+.comment_supercontainer .comment_container:nth-child(odd) {
+    background-color: rgb(239, 245, 251);
+    color: rgb(41, 111, 168);
+}
+.comment_container {
+    min-height: 50px;
+    display: flex;
+    column-gap: 50px;
+}
+.comment_name {
+    border-right: 1px solid black;
+    padding-right: 30px;
+    width: 150px;
+    box-sizing: content-box;
+}
+.comments {
+    padding: 0 100px 100px;
+}
+.hidden {
+    display: none;
+}
+.comment_supercontainer {
+    margin-top: 30px;
+}
+.comment_text {
+    border: 1px solid rgb(41, 111, 168);
+    background-color: rgb(239, 245, 251);
+}

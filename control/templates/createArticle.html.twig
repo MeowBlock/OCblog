@@ -34,6 +34,8 @@
                             <div class="tinyFormContainer">
                                 <label for="image">Visuel principal</label>
                                 <input name="image" type="file"/>
+                                <img style="max-width:200px; max-height:200px;" src="{{article.image}}"/>
+                                <input type="hidden" name="old_img" value="{{article.image}}"/>
                             </div>
                             <textarea name="content" id="tiny">
                                 {{article.content}}
