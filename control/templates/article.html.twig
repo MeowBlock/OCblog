@@ -30,45 +30,6 @@
   {% endblock %}
   {% block content %}
 
-
-  <!-- START NAV -->
-  {# <nav class="navbar">
-    <div class="container">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="../">
-          <img src="https://svgshare.com/i/tqR.svg" alt="Acme">
-        </a>
-        <span class="navbar-burger burger" data-target="navbarMenu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </div>
-      <div id="navbarMenu" class="navbar-menu">
-        <div class="navbar-end">
-          <div class=" navbar-item">
-            <div class="control has-icons-left">
-              <input class="input is-rounded" type="email" placeholder="Search">
-              <span class="icon is-left">
-                <i class="fa fa-search"></i>
-              </span>
-            </div>
-          </div>
-          <a class="navbar-item is-active is-size-5 has-text-weight-semibold">
-            Home
-          </a>
-          <a class="navbar-item is-size-5 has-text-weight-semibold">
-            Examples
-          </a>
-          <a class="navbar-item is-size-5 has-text-weight-semibold">
-            Features
-          </a>
-        </div>
-      </div>
-    </div>
-  </nav> #}
-  <!-- END NAV -->
-
   <!-- Image -->
   <section class="hero ">
     <div class="hero-body">
@@ -96,69 +57,46 @@
             </div>
           </div>
         </section>
+        <div class="comments">
+          <h2 class="comment_title title" style="text-align: center;">Commentaires</h2>
+          <div class="comment_form {{islogin ? '' : 'hidden'}}">
+              <form method="POST" action="./postComment">
+                  <input type="hidden" name="article" value="{{article.id}}">
+                  <input type="hidden" name="comment" value="0">
+                  <textarea class="comment_text" cols="100" name="text">Entrez votre commentaire ici</textarea>
+                  <button type="submit" class="button bd-fat-button is-info is-light bd-pagination-prev" title="Envoyer">
+                    <span>
+                      <strong>Envoyer</strong>
+                    </span>
+                  </button>
+              </form>
+          </div>
+          <div class="comment_login {{islogin ? 'hidden' : ''}}">
+              <div>Vous devez être connecté pour pouvoir poster un commentaire, Connectez-vous ici => <a href="./login">Se connecter</a></div>
+          </div>
+          <div class="comment_supercontainer">
+              {% for comment in comments %}
+                  <div class="comment_container">
+                      <div class="comment_name">
+                        <div class="">
+                            {{comment.uname}}
+                        </div>
+                        <div>{{comment.datetime}}</div>
+                      </div>
+                      <div class="comment_separator"></div>
+                      <div>
+                          {{comment.text}}
+                      </div>
+                  </div>
+              {% endfor %}
+          </div>
 
-        <div class="is-divider"></div>
-
-        <div class="container">
-        <nav class="pagination is-centered" role="navigation" aria-label="pagination">
- 
-           <a class="button bd-fat-button is-info is-light bd-pagination-prev" href="#" title="previous article">
-            <span class="icon is-left">
-              <i class="fa fa-arrow-left"></i>
-            </span>
-            <span>
-              <strong>Previous Article</strong>
-            </span>
-          </a>
-
-          <a class="button bd-fat-button is-info is-light bd-pagination-prev" href="#" title="next article">
-            <strong>Next Article</strong>
-            <span class="icon is-left">
-              <i class="fa fa-arrow-right"></i>
-            </span>
-            <span>
-            </span>
-          </a>
-          </nav>
          
-</div>
+      </div>
 
       </div>
     </div>
   </section>
-  <div class="comments">
-    <h2 class="comment_title title" style="text-align: center;">Commentaires</h2>
-    <div class="comment_form {{islogin ? '' : 'hidden'}}">
-        <form method="POST" action="./postComment">
-            <input type="hidden" name="article" value="{{article.id}}">
-            <input type="hidden" name="comment" value="0">
-            <textarea class="comment_text" cols="100" name="text">Entrez votre commentaire ici</textarea>
-            <button type="submit" class="button bd-fat-button is-info is-light bd-pagination-prev" title="Envoyer">
-              <span>
-                <strong>Envoyer</strong>
-              </span>
-            </button>
-        </form>
-    </div>
-    <div class="comment_login {{islogin ? 'hidden' : ''}}">
-        <div>Vous devez être connecté pour pouvoir poster un commentaire, Connectez-vous ici => <a href="./login">Se connecter</a></div>
-    </div>
-    <div class="comment_supercontainer">
-        {% for comment in comments %}
-            <div class="comment_container">
-                <div class="comment_name">
-                  <div class="">
-                      {{comment.uname}}
-                  </div>
-                  <div>{{comment.datetime}}</div>
-                </div>
-                <div class="comment_separator"></div>
-                <div>
-                    {{comment.text}}
-                </div>
-            </div>
-        {% endfor %}
-    </div>
 
 </div>
   {% endblock %}
