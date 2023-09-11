@@ -4,10 +4,11 @@ namespace App\Controller;
 
 use Model\Comment;
 use Model\User;
+use Model\Article;
 class ArticleController extends Controller
 {
     public function getArticle($id = 0) {
-        $article = \Model\Article::first(['id', '=', $id], [], false);
+        $article = Article::first(['id', '=', $id], [], false);
             if($id == 0 || !$id) {
                 header('location: ../posts/');
             }
@@ -16,7 +17,9 @@ class ArticleController extends Controller
             foreach ($comments as &$comment) {
                 $user = User::first(['id', '=', $comment['userID']], ['name'], false);
                 $comment['uname'] = $user['name'];
-            }
+            }            
+            $article['date'] = Article::formatDate($article['datetime']);
+            $article['datetime'] = Article::formatDatetime($article['datetime']);
             
     
             echo $this->twig->render('article.html.twig', ['comments' => $comments, 'users' => $users, 'article' => $article, 'islogin' => (bool)$this->auth->verifyConnect()]);

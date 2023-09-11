@@ -73,6 +73,7 @@ class AccountController extends Controller
             $article->description = $_POST['description'];
             $article->content = $_POST['content'];
             $article->user_id = $_SESSION['user']['id'];
+            $article->datetime = date('Y-m-d H:i:s');
             $img = '';
             if(isset($_FILES['image']) && $_FILES['image']['tmp_name']) {
                 $img = $this->gestionImage($_FILES['image']);
@@ -81,7 +82,7 @@ class AccountController extends Controller
             }
             $article->image = $img;
             $article->save();
-            header('location: ../articles');
+            header('location: ./articles');
         } else {
             header('location: ./login');
         }
