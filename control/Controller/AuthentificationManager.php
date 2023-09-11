@@ -20,6 +20,13 @@ class AuthentificationManager
         $this->name = $_SESSION['user']['name'] = $u['name'];
         $this->isadmin = $_SESSION['user']['isadmin'] = $u['isadmin'];
     }
+    public function deconnexion() {
+        $this->id = $_SESSION['user']['id'] = '';
+        $this->email = $_SESSION['user']['email'] = '';
+        $this->password = '';
+        $this->name = $_SESSION['user']['name'] = '';
+        $this->isadmin = $_SESSION['user']['isadmin'] = '';
+    }
 
     public function verifyConnect(){
         if(!isset($_SESSION['user'])) {

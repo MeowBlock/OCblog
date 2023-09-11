@@ -32,6 +32,7 @@ $router->get('/mon-compte/commentaires',[new AccountController, 'GetAccountComme
 $router->get('/mon-compte/tous-les-commentaires',[new AccountController, 'GetAllComments'] );
 $router->get('/mon-compte/creation-article', [new AccountController, 'getAccountCreateArticle']);
 $router->get('/mon-compte/creation-article/:id', [new AccountController, 'getAccountCreateArticle']);
+$router->get('/mon-compte/deconnexion', [new AccountController, 'deconnexion']);
 $router->post('/mon-compte/creation-article/:id', [new AccountController, 'postAccountCreateArticle']);
 $router->post('/mon-compte/creation-article', [new AccountController, 'postAccountCreateArticle']);
 $router->post('/api/comment',[new ApiController, 'AcceptComment'] );

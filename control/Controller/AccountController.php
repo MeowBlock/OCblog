@@ -11,12 +11,12 @@ class AccountController extends Controller
 {
     public function getAccountHpage() {
         if($this->auth->verifyConnect()) {
-            $cond = $this->auth->verifyAdmin() ? [] : ['user_id', '=', $_SESSION['user']['id']];
+            $cond = '';
             $articles = Article::find($cond, [], false);
             $nbArticles = count(Article::find([], ['id'], false));
             $nbUsers = count(User::find([], ['id'], false));
             $nbComments = count(Comment::find([], ['id'], false));
-            echo $this->twig->render('admin.html.twig', ['articles' => $articles, 'user'=>$_SESSION['user'], 'nbUsers' =>$nbUsers, 'nbArticles' =>$nbArticles, 'nbComments' =>$nbComments, 'activeCompte'=>'is-active']);
+            echo $this->twig->render('admin.html.twig', ['articles' => $articles, 'isAdmin'=>$this->auth->verifyAdmin(), 'user'=>$_SESSION['user'], 'nbUsers' =>$nbUsers, 'nbArticles' =>$nbArticles, 'nbComments' =>$nbComments, 'activeCompte'=>'is-active']);
         } else {
             header('location: ./login');
         }
@@ -25,7 +25,7 @@ class AccountController extends Controller
         if($this->auth->verifyConnect()) {
             $cond = $this->auth->verifyAdmin() ? [] : ['user_id', '=', $_SESSION['user']['id']];
             $articles = Article::find($cond, [], false);
-            echo $this->twig->render('adminArticles.html.twig', ['articles' => $articles, 'user'=>$_SESSION['user'], 'activeArticles'=>'is-active']);
+            echo $this->twig->render('adminArticles.html.twig', ['articles' => $articles, 'isAdmin'=>$this->auth->verifyAdmin(), 'user'=>$_SESSION['user'], 'activeArticles'=>'is-active']);
         } else {
             header('location: ./login');
         }
@@ -37,7 +37,7 @@ class AccountController extends Controller
             } else {
                 $article = new Article;
             }
-            echo $this->twig->render('createArticle.html.twig', ['article' => $article, 'activeCreation'=>'is-active']);
+            echo $this->twig->render('createArticle.html.twig', ['isAdmin'=>$this->auth->verifyAdmin(), 'article' => $article, 'activeCreation'=>'is-active']);
 
         } else {
             header('location: ./login');
@@ -98,14 +98,18 @@ class AccountController extends Controller
             foreach ($users as $user) {
                 $users2[$user['id']] = $user['name'];
             }
-            echo $this->twig->render('adminComments.html.twig', ['comments' => $comments,'users' => $users2, 'activeComments'=>'is-active', 'all'=>$all]);
-        } else {
+            echo $this->twig->render('adminComments.html.twig', ['isAdmin'=>$this->auth->verifyAdmin(),'comments' => $comments,'users' => $users2, 'activeComments'=>'is-active', 'all'=>$all]);
+        } else{
             header('location: ./login');
         }
     }
     public function GetAllComments() {
         $comments = Comment::find([], [], false);
         $this->getAccountComments($comments);
+    }
+    public function deconnexion() {
+        $this->auth->deconnexion();
+        header('location: ../login');
     }
 }
 
