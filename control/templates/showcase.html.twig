@@ -385,9 +385,10 @@
             </div>
             <div class="column is-8 is-offset-2">
               <form
-                action="https://formspree.io/email@example.com"
+                action=""
                 method="POST"
               >
+              <input type="hidden" name="nom_form" value="contact"/>
                 <div class="field">
                   <label class="label">Nom</label>
                   <div class="control has-icons-left">
@@ -395,7 +396,7 @@
                       class="input"
                       type="text"
                       placeholder="Jean Dupont"
-                      name="Name"
+                      name="name"
                     />
                     <span class="icon is-small is-left">
                       <i class="fas fa-user"></i>
@@ -409,7 +410,7 @@
                       class="input"
                       type="email"
                       placeholder="Bonjour@exemple.com"
-                      name="Email"
+                      name="email"
                     />
                     <span class="icon is-small is-left">
                       <i class="fas fa-envelope"></i>
@@ -422,7 +423,7 @@
                     <textarea
                       class="textarea"
                       placeholder="Message"
-                      name="Message"
+                      name="message"
                     ></textarea>
                   </div>
                 </div>

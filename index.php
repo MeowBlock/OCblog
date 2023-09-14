@@ -1,5 +1,4 @@
 <?php
-
 use App\Controller\AccountController;
 use App\Controller\ArticleController;
 use App\Controller\BlogController;
@@ -22,6 +21,7 @@ $getArticleFunc = array($ArticleController,"getArticle");
 
 
 $router->get('/',[new HpageController, 'getHpage'] );
+$router->post('/',[new HpageController, 'sendContact'] );
 $router->get('/posts', [new BlogController, 'getBlog']);
 $router->get('/posts/:id', $getArticleFunc);
 $router->get('/login', [new LoginController, 'getLogin']);
