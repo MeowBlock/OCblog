@@ -1,0 +1,2 @@
+# OCblog
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c7153142252b4a3eb014157372c5d37b)](https://app.codacy.com/gh/MeowBlock/OCblog?utm_source=github.com&utm_medium=referral&utm_content=MeowBlock/OCblog&utm_campaign=Badge_Grade)
