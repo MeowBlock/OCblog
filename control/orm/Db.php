@@ -11,7 +11,7 @@ class Db
     private static $user = 'root';
     private static $pass = '';
     private static $host = 'localhost';
-    private static $dbname = 'OCblog';
+    private static $dbname = 'ocblog';
 
     /**
      * Permet d'effectuer la connexion à la base de données

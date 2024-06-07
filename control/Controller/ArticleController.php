@@ -27,7 +27,7 @@ class ArticleController extends Controller
         public function postComment() {
             if(isset($_POST['article']) && isset($_POST['text']) && isset($_SESSION['user']['id']) && isset($_POST['comment'])) {
                 $cmt = [];
-                $cmt = Comment::find([['userID', '=', $_SESSION['user']['id']]], [], false, 1, null, [['datetime', 'DESC']]); 
+                $cmt = Comment::find([['userID', '=', $_SESSION['user']['id']], ['articleID', '=', $_POST['article']]], [], false, 1, null, [['datetime', 'DESC']]); 
                 $cmt = $cmt[0];
                 $publishok = false;
                 if(isset($cmt)) {

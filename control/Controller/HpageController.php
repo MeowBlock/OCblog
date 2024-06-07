@@ -42,6 +42,8 @@ class HpageController extends Controller
             $email->html($html);
             $mailer->send($email);
         }
+
+        $this->getHpage();
     }
 }
 

@@ -194,7 +194,7 @@ abstract class Model
         }
 
         if ($this->attr[static::$primaryKey] == null) {
-            throw new Exception("La clé primaire ne doit pas être vide pour modifié une ligne");
+            throw new Exception("La clé primaire ne doit pas être vide pour modifier une ligne");
         }
 
         $query = Query::table(static::$table);
