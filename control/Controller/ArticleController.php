@@ -29,7 +29,7 @@ class ArticleController extends Controller
                 $cmt = [];
                 $cmt = Comment::find([['userID', '=', $_SESSION['user']['id']], ['articleID', '=', $_POST['article']]], [], false, 1, null, [['datetime', 'DESC']]); 
                 $cmt = $cmt[0];
-                $publishok = false;
+                $publishok = true;
                 if(isset($cmt)) {
                     $d1 = new \DateTimeImmutable($cmt['datetime']);
                     $d2 = new \DateTimeImmutable('now');
